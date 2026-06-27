@@ -1,174 +1,82 @@
-# CompanyManagement
 
-#### از شما خواسته شده مدیریت کارکنان یک شرکت را در اختیار بگیرید.
+# 🛍️ Vendilo - Advanced Online Store Platform
 
-با تمرکز بر مفاهیم **وراثت** (Inheritance) و **کالکشن‌ها** (Collections)، کلاس‌های موردنیاز را مطابق توضیحات زیر پیاده‌سازی کنید:
+[![Java](https://img.shields.io/badge/Java-17%2B-blue.svg)](https://www.java.com)
+[![JUnit](https://img.shields.io/badge/JUnit-5.9.2-green.svg)](https://junit.org/junit5/)
+[![SQLite](https://img.shields.io/badge/SQLite-3.42.0-lightblue.svg)](https://www.sqlite.org/)
 
-## Staff
+## 📋 Overview
 
-یک کلاس پایه برای تمام کارکنان شرکت.
+Vendilo is a comprehensive e-commerce platform developed as a university project, simulating a full-featured online marketplace. The system supports multiple user roles including customers, sellers, support agents, and administrators, with sophisticated business logic for order management, payments, and user interactions.
 
-دارای فیلدهای زیر:
+## 🎯 Key Features
 
-* `String firstName` نام کارمند
-* `String lastName` نام خانوادگی کارمند
-* `int workExperience` سابقه کاری کارمند
-* `boolean committedCrime` وضعیت تخلف یا جرم کارمند
-* `double baseSalary` حقوق پایه کارمند
+### 👥 User Roles
+- **Customers**: Browse products, manage cart, place orders, rate products
+- **Sellers**: Manage inventory, list products, view sales history  
+- **Support Agents**: Handle user requests and seller verifications
+- **Administrators**: Manage users, monitor performance, send promotions
 
-### متد 
+### 💰 Core Functionality
+- **Product Catalog**: Categorized products (Digital, Books) with detailed attributes
+- **Shopping Cart**: Dynamic cart management with address-based shipping
+- **Wallet System**: Digital wallet for transactions and seller payouts
+- **Discount Codes**: Percentage and fixed-amount discounts
+- **Vendilo+ Subscription**: Premium membership with exclusive benefits
 
-* Getter و Setter برای تمامی فیلدها
+### 📱 Advanced Features
+- **Notification System**: Real-time updates for orders, stock, and messages
+- **Performance Analytics**: Sales reports and seller performance tracking
+- **User Management**: Admin controls for user creation, blocking, and role assignment
 
+## 🚀 Installation & Running
 
----
+### Prerequisites
+- Java 17 or higher
+- SQLite JDBC driver (included)
+- Git (optional)
 
-## Employee
+### Setup Steps
 
-کارمند، نوعی Staff است.
-
-این کلاس به عنوان کلاس والد برای:
-
-* Salesman
-* Accountant
-
-استفاده می‌شود.
-
-### متدهایی که باید پیاده‌سازی کنید
-
-1. `public double  countBonus()`
-
-محاسبه bonus برای کارمندان است که با فرمول زیر محاسبه میشود:
-```text
-workExperience × 5 
-
-```
----
-
-## Salesman
-
-فروشنده، نوعی Employee است.
-
-## متد ها
-* `double countSalary()`
-
-حقوق فروشنده به صورت زیر محاسبه می‌شود:
-
-```text
-baseSalary + (workExperience × 60) + bonus
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/vendilo.git
+cd vendilo
 ```
 
-برای این کلاس متدهای `equals()` و `hashCode()` نیز پیاده‌سازی شوند.
-
----
-
-## Accountant
-
-حسابدار، نوعی Employee است.
-
-
-## متد ها
-* `double countSalary()`
-حقوق حسابدار به صورت زیر محاسبه می‌شود:
-
-```text
-baseSalary + (workExperience × 50) + bonus
+2. **Compile all Java source files**
+```bash
+dir /s /b *.java > sources.txt
+javac -cp lib\sqlite-jdbc-3.42.0.0.jar -d out @sources.txt
 ```
 
-برای این کلاس متدهای `equals()` و `hashCode()` نیز پیاده‌سازی شوند.
-
----
-
-
-
-## Manager
-
-مدیر، نوعی Staff است.
-
-دارای فیلدهای زیر:
-
-* `ArrayList<Salesman> salesmen`
-* `ArrayList<Accountant> accountants`
-
-
-
-
-**حتماً از قواعد کپسول‌سازی استفاده کنید و از لیست‌ها در Getterها محافظت کنید.**
-
----
-
-### متدهایی که باید پیاده‌سازی کنید
-
-1. `boolean addSalesman(Salesman salesman)`
-
-اضافه کردن یک فروشنده به لیست فروشندگان.
-
-* اگر ورودی `null` باشد عملیات ناموفق است.
-* در غیر این صورت فروشنده به لیست اضافه شده و `true` برگردانده می‌شود.
-
----
-
-2. `boolean addAccountant(Accountant accountant)`
-
-اضافه کردن یک حسابدار به لیست حسابداران.
-
-* اگر ورودی `null` باشد عملیات ناموفق است.
-* در غیر این صورت حسابدار به لیست اضافه شده و `true` برگردانده می‌شود.
-
----
-
-
-
-3. `boolean fireSalesman(String firstName)`
-
-اخراج یک فروشنده با نام مشخص.
-
-* فروشنده باید در لیست وجود داشته باشد.
-* مقدار `committedCrime` باید برابر `true` باشد.
-* در صورت موفقیت فروشنده از لیست حذف شده و `true` برگردانده می‌شود.
-* در غیر این صورت `false` برگردانده می‌شود.
-
----
-
-4. `boolean fireAccountant(String firstName)`
-
-اخراج یک حسابدار با نام مشخص.
-
-* حسابدار باید در لیست وجود داشته باشد.
-* مقدار `committedCrime` باید برابر `true` باشد.
-* در صورت موفقیت حسابدار از لیست حذف شده و `true` برگردانده می‌شود.
-* در غیر این صورت `false` برگردانده می‌شود.
-
----
-
-
-
-5. `List<Salesman> getSalesmen()`
-
-برگرداندن لیست فروشندگان.
-
----
-
-6. `List<Accountant> getAccountants()`
-
-برگرداندن لیست حسابداران.
-
-
----
-
-7. `int getTotalAvailable()`
-
-تعداد کل کارکنان موجود در شرکت را برگرداند.
-
-```text
-salesmen.size() +
-accountants.size() +
+3. **Run the application**
+```bash
+java -cp "out;lib/sqlite-jdbc-3.42.0.0.jar" ir.ac.kntu.Vendilo
 ```
----
 
-* `double countSalary()`
-محاسبه حقوق مدیر با فرمول زیر:
-
-```text
-baseSalary + (workExperience × 70)
+### Quick Test (Optional)
+The system includes pre-loaded data for testing purposes. Default admin credentials:
 ```
+Username: admin
+Password: Admin@123
+```
+
+
+## 📖 Documentation
+
+The system follows object-oriented principles with clear separation of concerns:
+- **Data Layer**: SQLite database for persistent storage
+- **Business Layer**: Service classes for business logic
+- **Presentation Layer**: Console-based interactive menus
+
+## 🤝 Contributing
+
+This is an academic project. For contributions, please ensure:
+- Clean code principles are followed
+- Unit tests are included for new features
+- Conventional commit messages are used
+
+## 📝 License
+
+This project is developed for educational purposes as part of the Advanced Programming course.
